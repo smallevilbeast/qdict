@@ -1,0 +1,10 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import sys
+from qdict.qdict import QDictWidget
+
+app = QtGui.QApplication(sys.argv)
+win = QDictWidget()
+win.show()
+sys.exit(app.exec_())
