@@ -115,6 +115,7 @@ class QDictWidget(QtGui.QWidget):
         self.setLayout(layout)
         self.create_actions()
         self.create_trayicon()
+        self.set_sheet_style("Cleanlooks")
         
     def closeEvent(self, event):
         self.hide()
@@ -190,7 +191,11 @@ class QDictWidget(QtGui.QWidget):
         
     def on_window_closed(self):    
         self.clean_quit()
-                
+        
+    def set_sheet_style(self, style_name):    
+        QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())        
+        QtGui.QApplication.setStyle(QtGui.QStyleFactory.create(style_name))
+        
 if __name__ == "__main__":        
     import sys
     app = QtGui.QApplication(sys.argv)
