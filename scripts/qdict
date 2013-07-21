@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+from PyQt4 import QtGui
 from qdict.qdict import QDictWidget
 
 app = QtGui.QApplication(sys.argv)

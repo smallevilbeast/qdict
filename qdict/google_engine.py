@@ -8,12 +8,30 @@ public_curl = Curl()
 def parse_dummy_list(dlist):
     while ",," in dlist or "[," in dlist:
         dlist = dlist.replace(",,", ",None,").replace("[,", "[None,")
-    return eval(dlist)
+    try:    
+        return eval(dlist)
+    except SyntaxError:
+        return []
 
  
 def get_sample_result(glist):
+    '''
+    翻译详细: a[5]
+    
+    原始字符:      a[5][<i>][0]
+    句子ID:       a[5][<i>][1]
+    可选翻译:      a[5][<i>][2] | 判断长度， 取每一列表的[0], 取出翻译后字符: a[5][<i>][2][0][0]
+    字符位置(pos): a[5][<i>][3] | 取出[0], 并判断是否为None     
+
+    In [104]: print a[4][1]
+    ['reparents', [5], 1, 0, 1000, 1, 2, 0]
+
+    In [105]: print a[5][1]
+    ['reparents', 5, [['reparents', 1000, 1, 0]], [[13, 22]], '']    
+
+    '''    
     try:
-        return glist[0][0][0]
+        return  ''.join([dl[0] for dl in glist[0]])
     except:
         return "翻译失败"
     
@@ -38,6 +56,18 @@ def google_translate(text, sl="auto", tl="zh-CN", encoding="UTF-8"):
     plist = parse_dummy_list(dummy_list)
     result = get_sample_result(plist)
     return result.decode(encoding)
+
+def google_voice(text, tl="en", encoding="UTF-8"):
+    data = dict(ie=encoding,
+                tl=tl,
+                total=1,
+                idx=0,
+                textlen=len(text),
+                prev="input",
+                q=text
+                )
+    return public_curl.request(data)
+
 
 LANGUAGES = [
     ('af', u'\u5e03\u5c14\u8bed(\u5357\u975e\u8377\u5170\u8bed)'),

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=QDict
+Comment=Handy translation tool
+Comment[zh_CN]=方便的翻译工具
+# Icon=
+Exec=qdict
+Terminal=false
+Type=Application
+Categories=Development;
+StartupNotify=false

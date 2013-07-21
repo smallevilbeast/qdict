@@ -3,7 +3,7 @@
 
 import os
 
-root_dir = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
+root_dir = os.path.dirname(os.path.realpath(__file__))
 
 def get_path(*subpath_elements, **kwargs):
     # check_exists = kwargs.get("check_exists", True)
@@ -12,4 +12,4 @@ def get_path(*subpath_elements, **kwargs):
     return path
 
 def get_icon(name):
-    return  get_path("data", name)
+    return  get_path("images", name)

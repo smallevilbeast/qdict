@@ -217,18 +217,3 @@ class GlobalKey(threading.Thread):
         #2nd: 0 is unshifted, 1 is shifted, 2 is alt grid, and 3 is shiftalt grid
         return XK.keysym_to_string(self.disp.keycode_to_keysym(key_code, 0))        
     
-    
-    
-if __name__ == "__main__":    
-    import gtk
-    
-    gtk.gdk.threads_init()
-
-    def t(*args, **kwargs):
-        print 'Called!'
-    manager = GlobalKey()
-    # manager.bind('Ctrl + Alt + Shift + s', t)
-    manager.bind('Ctrl + Alt + m', t)
-    manager.start()
-    gtk.main()
-    

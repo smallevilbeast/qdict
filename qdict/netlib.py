@@ -22,7 +22,9 @@ class Curl(object):
         self.headers = headers
         self.url = ""
     
-    def request(self, url, data=None, method="GET", header=None, proxy_host=None, proxy_port=None):
+    def request(self, url, data=None, method="GET", header=None, 
+                proxy_host=None, proxy_port=None,
+                outfile=None):
         '''
         open url width get method
         @param url: the url to visit
